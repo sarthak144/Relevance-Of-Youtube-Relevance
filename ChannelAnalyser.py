@@ -19,15 +19,15 @@ def GetChannelAge(Channels):
             continue
         d = dateutil.parser.parse(Channels[i]['ChannelAge']).date()
         age = (date.today() - d) // timedelta(days=7)
-        if(age<52):
+        if(age<=52):
             ChannelAge['Under 1Y']+=1
-        elif(age<104 and age>52):
+        elif(age<=104 and age>52):
             ChannelAge["1Y-2Y"]+=1
-        elif(age<260 and age>104):
+        elif(age<=260 and age>104):
             ChannelAge["2Y-5Y"]+=1
-        elif(age<520 and age>260):
+        elif(age<=520 and age>260):
             ChannelAge["5Y-10Y"]+=1
-        elif(age>520):
+        elif(age>=520):
             ChannelAge["Above 10Y"]+=1
     return ChannelAge
 
