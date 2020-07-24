@@ -38,8 +38,8 @@ def GetVideoDuration(Videos):
             VideoDuration["Unavailable"]+=1
             continue
         elif(Videos[i]['VideoDuration']=="P0D"):
-            print("live")
             VideoDuration["Live"]+=1
+            continue
         else:
             t = Videos[i]['VideoDuration']
             t=t[2:]
@@ -77,3 +77,138 @@ def GetVideoDuration(Videos):
         elif(Minutes<=0):
             VideoDuration["Under 1Min"]+=1
     return VideoDuration
+
+
+def GetVideoDefinition(Videos):
+    VideoDefinition={}
+    for i in Videos:
+        if Videos[i]['VideoDefinition'] not in VideoDefinition:
+            VideoDefinition[Videos[i]['VideoDefinition']]=1
+        else:
+            VideoDefinition[Videos[i]['VideoDefinition']]+=1
+    return VideoDefinition
+
+def GetVideoCaption(Videos):
+    VideoCaption = {"Yes": 0, "No": 0,"Unavailable": 0}
+    for i in Videos:
+        if Videos[i]['VideoCaption']=="Unavailable":
+            VideoCaption["Unavailable"]+=1
+        elif Videos[i]['VideoCaption']:
+            VideoCaption["Yes"]+=1
+        else:
+            VideoCaption["No"]+=1
+    return VideoCaption
+
+def GetVideoLicense(Videos):
+    VideoLicense = {"Yes": 0, "No": 0,"Unavailable": 0}
+    for i in Videos:
+        if Videos[i]['VideoLicense']=="Unavailable":
+            VideoLicense["Unavailable"]+=1
+        elif Videos[i]['VideoLicense']:
+            VideoLicense["Yes"]+=1
+        else:
+            VideoLicense["No"]+=1
+    return VideoLicense
+
+def GetVideoEmbeddable(Videos):
+    VideoEmbeddable = {"Yes": 0, "No": 0,"Unavailable": 0}
+    for i in Videos:
+        if Videos[i]['VideoEmbeddable']=="Unavailable":
+            VideoEmbeddable["Unavailable"]+=1
+        elif Videos[i]['VideoEmbeddable']:
+            VideoEmbeddable["Yes"]+=1
+        else:
+            VideoEmbeddable["No"]+=1
+    return VideoEmbeddable
+
+def GetVideoKids(Videos):
+    VideoKids = {"Yes": 0, "No": 0,"Unavailable": 0}
+    for i in Videos:
+        if Videos[i]['VideoKids']=="Unavailable":
+            VideoKids["Unavailable"]+=1
+        elif Videos[i]['VideoKids']:
+            VideoKids["Yes"]+=1
+        else:
+            VideoKids["No"]+=1
+    return VideoKids
+
+def GetVideoViews(Videos):
+    VideoViews = {"Under 10K": 0, "10K-100K": 0 , "100K-1M": 0, "1M-10M": 0, "10M-50M": 0, "50M-100M": 0, "100M-1B": 0, "Above 1B" : 0,  "Unavailable": 0}
+    for i in Videos:
+        if Videos[i]['VideoViews']=="Unavailable":
+            VideoViews["Unavailable"]+=1
+            continue
+        views=int(Videos[i]['VideoViews'])
+        if(views in range(0,10000)):
+            VideoViews["Under 10K"]+=1
+        elif(views in range(10000,100000)):
+            VideoViews["10K-100K"]+=1
+        elif(views in range(100000,1000000)):
+            VideoViews["100K-1M"]+=1       
+        elif(views in range(1000000,10000000)):
+            VideoViews["1M-10M"]+=1   
+        elif(views in range(10000000,50000000)):
+            VideoViews["10M-50M"]+=1
+        elif(views in range(50000000,100000000)):
+            VideoViews["50M-100M"]+=1
+        elif(views in range(100000000,1000000000)):
+            VideoViews["100M-1B"]+=1
+        elif(views>=1000000000):
+            VideoViews["Above 1B"]+=1
+    return VideoViews
+
+def GetVideoRelevantTopics(Videos):
+    VideoRelevantTopics = {}
+    for i in Videos:
+        if Videos[i]['VideoRelevantTopics']=="Unavailable":
+            if "Unavailable" not in VideoRelevantTopics:
+                VideoRelevantTopics["Unavailable"]=1
+            else:
+                VideoRelevantTopics["Unavailable"]+=1
+        else:
+            UniqueTopics=set(Videos[i]['VideoRelevantTopics'])
+            UniqueTopics=list(UniqueTopics)
+            for j in UniqueTopics:
+                if IDs[j] not in VideoRelevantTopics:
+                    VideoRelevantTopics[IDs[j]]=1
+                else:
+                    VideoRelevantTopics[IDs[j]]+=1
+    
+    return VideoRelevantTopics
+
+def GetVideoCategories(Videos):
+    VideoCategories = {}
+    for i in Videos:
+        if Videos[i]['VideoCategories']=="Unavailable":
+            if "Unavailable" not in VideoCategories:
+                VideoCategories["Unavailable"]=1
+            else:
+                VideoCategories["Unavailable"]+=1
+        else:
+            for j in Videos[i]['VideoCategories']:
+                category=j
+                StartIndex=category.index("/wiki/")
+                StartIndex+=6
+                category=category[StartIndex:]
+                category=category.replace('_'," ")
+                if category not in VideoCategories:
+                    VideoCategories[category]=1
+                else:
+                    VideoCategories[category]+=1
+    return VideoCategories
+
+def GetVideoTagsCount(Videos):
+    VideoTagsCount={}
+    for i in Videos:
+        VideoTags=Videos[i]['VideoTags']
+        s=str(VideoTags)
+        s=s.replace("'", '')
+        s=s.replace(",", '')
+        slist=s.split()
+        for i in slist:
+            if i not in VideoTagsCount:
+                VideoTagsCount[i]=1
+            else:
+                VideoTagsCount[i]+=1
+    sort_VideoTagsCount = sorted(VideoTagsCount.items(), key=lambda x: x[1], reverse=True)
+    return sort_VideoTagsCount
