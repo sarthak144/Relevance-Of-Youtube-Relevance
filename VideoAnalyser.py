@@ -202,6 +202,7 @@ def GetVideoTagsCount(Videos):
     for i in Videos:
         VideoTags=Videos[i]['VideoTags']
         s=str(VideoTags)
+        s=s[1:-1]
         s=s.replace("'", '')
         s=s.replace(",", '')
         slist=s.split()
@@ -211,4 +212,7 @@ def GetVideoTagsCount(Videos):
             else:
                 VideoTagsCount[i]+=1
     sort_VideoTagsCount = sorted(VideoTagsCount.items(), key=lambda x: x[1], reverse=True)
-    return sort_VideoTagsCount
+    VideoTagsCount={}
+    for i in sort_VideoTagsCount:
+        VideoTagsCount[i[0]]=i[1]
+    return VideoTagsCount
