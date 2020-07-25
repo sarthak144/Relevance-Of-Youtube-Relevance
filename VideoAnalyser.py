@@ -1,5 +1,6 @@
 import dateutil.parser
 from IDS import *
+from math import log10
 
 def GetVideoAge(Videos):
     VideoAge = {"Under 1W": 0, "1W-1M": 0, "1M-6M": 0, "6M-1Y": 0, "1Y-2Y" : 0, "2Y-5Y" : 0, "5Y-10Y" : 0, "Above 10Y": 0, "Unavailable": 0}
@@ -216,3 +217,29 @@ def GetVideoTagsCount(Videos):
     for i in sort_VideoTagsCount:
         VideoTagsCount[i[0]]=i[1]
     return VideoTagsCount
+
+
+def GetVideoLikesDislikes(Videos):
+    Likes=[]
+    Dislikes=[]
+    for i in Videos:
+        Likes.append(log10(int(Videos[i]['VideoLikes'])))
+        Dislikes.append(log10(int(Videos[i]['VideoDislikes'])))
+    return((Likes,Dislikes))
+
+def GetVideoViewsLikes(Videos):
+    Likes=[]
+    Views=[]
+    for i in Videos:
+        Likes.append(log10(int(Videos[i]['VideoLikes'])))
+        Views.append(log10(int(Videos[i]['VideoViews'])))
+    return((Views,Likes))
+
+def GetVideoViewsComments(Videos):
+    Comments=[]
+    Views=[]
+    for i in Videos:
+        Comments.append(log10(int(Videos[i]['VideoComments'])))
+        Views.append(log10(int(Videos[i]['VideoViews'])))
+    return((Views,Comments))
+

@@ -166,3 +166,25 @@ def HorizontalBar(data):
     ax.legend(ncol=len(category_names))
 
     plt.show()
+
+def ScatViewsLikes(data):
+    # data=(Views, Likes) tuple of lists
+    x = data[1] #Likes
+    y = data[0] #Views
+    plt.figure(figsize=(10, 5))
+    plt.xlabel("Number of Likes")
+    plt.ylabel("Number of Views")
+    plt.title("Views vs Likes in top search results")
+    plt.scatter(x, y, marker='.', color='red')
+    plt.show()
+
+def ScatLikesDislikes(data):
+    # data=(Likes, Dislikes) tuple of lists
+    x = data[1] #Dislikes
+    y = data[0] #Likes
+    plt.figure(figsize=(10, 5))
+    plt.xlabel("Number of Dislikes")
+    plt.ylabel("Number of Likes")
+    plt.title("Likes vs Dislikes in top search results")
+    plt.scatter(x, y, marker='.', color='red')
+    plt.show()
