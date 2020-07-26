@@ -226,7 +226,7 @@ def HorizontalBarAll4(data):
 
     category_colors=['lightblue','#00ff00','#ff4d4d', 'yellow']
 
-    fig, ax = plt.subplots(figsize=(20, 30))
+    fig, ax = plt.subplots(figsize=(30, 50))
     ax.invert_yaxis()
     ax.set_xlim(0, np.sum(data, axis=1).max())
     

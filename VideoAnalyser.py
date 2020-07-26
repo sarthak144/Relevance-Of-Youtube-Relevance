@@ -230,8 +230,10 @@ def GetVideoLikesDislikes(Videos):
     for i in Videos:
         try:
             available+=1
-            Likes.append(log10(int(Videos[i]['VideoLikes'])))
-            Dislikes.append(log10(int(Videos[i]['VideoDislikes'])))
+            likevalue=log10(int(Videos[i]['VideoLikes']))
+            dislikevalue=log10(int(Videos[i]['VideoDislikes']))
+            Likes.append(likevalue)
+            Dislikes.append(dislikevalue)
         except:
             if Videos[i]['VideoLikes']=="Unavailable" or Videos[i]['VideoDislikes']=="Unavailable":
                 unavailable+=1
@@ -258,8 +260,10 @@ def GetVideoViewsLikes(Videos):
     for i in Videos:
         try:
             available+=1
-            Likes.append(log10(int(Videos[i]['VideoLikes'])))
-            Views.append(log10(int(Videos[i]['VideoViews'])))
+            likevalue=log10(int(Videos[i]['VideoLikes']))
+            viewvalue=log10(int(Videos[i]['VideoViews']))
+            Likes.append(likevalue)
+            Views.append(viewvalue)
         except:
             if Videos[i]['VideoLikes']=="Unavailable" or Videos[i]['VideoViews']=="Unavailable":
                 unavailable+=1
@@ -286,8 +290,10 @@ def GetVideoViewsComments(Videos):
         # print(Videos[i]['VideoComments'])
         try:
             available+=1
-            Comments.append(log10(int(Videos[i]['VideoComments'])))
-            Views.append(log10(int(Videos[i]['VideoViews'])))
+            commentvalue=log10(int(Videos[i]['VideoComments']))
+            viewvaule=log10(int(Videos[i]['VideoViews']))
+            Comments.append(commentvalue)
+            Views.append(viewvaule)
         except:
             if Videos[i]['VideoComments']=="Unavailable" or Videos[i]['VideoViews']=="Unavailable":
                 unavailable+=1
@@ -300,6 +306,7 @@ def GetVideoViewsComments(Videos):
                     zerocomments+=1
     Exceptions=[available,unavailable,zeroboth,zeroviews,zerocomments]
     return((Views,Comments,Exceptions))
+
 
 def GetVideoAll4(Videos):
     data={}
