@@ -168,23 +168,52 @@ def HorizontalBar(data):
     plt.show()
 
 def ScatViewsLikes(data):
-    # data=(Views, Likes) tuple of lists
-    x = data[1] #Likes
+    # data=(Views, Likes, Exceptions) tuple of lists
     y = data[0] #Views
+    x = data[1] #Likes
+    Exceptions=data[2] #Footernotes
+    available,unavailable,zeroboth,zeroviews,zerolikes=Exceptions[0],Exceptions[1],Exceptions[2],Exceptions[3],Exceptions[4]
     plt.figure(figsize=(10, 5))
+    header="Views vs Likes in top search results \n"
+    plt.title(header)
     plt.xlabel("Number of Likes")
     plt.ylabel("Number of Views")
-    plt.title("Views vs Likes in top search results")
+    footer=str(available)+" Videos searched , Data unavailable for "+str(unavailable)+" videos"
+    footer=footer+"\n Videos with views and likes both zero : "+str(zeroboth)+", Videos with only likes zero : "+str(zerolikes)+", Videos with only views zero : "+str(zeroviews)
+    plt.figtext(0.51,-0.05,footer,ha="center",bbox={"facecolor":"red", "alpha":0.5, "pad":5})
     plt.scatter(x, y, marker='.', color='red')
     plt.show()
 
 def ScatLikesDislikes(data):
-    # data=(Likes, Dislikes) tuple of lists
-    x = data[1] #Dislikes
+    # data=(Likes, Dislikes, Exceptions) tuple of lists
     y = data[0] #Likes
+    x = data[1] #Dislikes
+    Exceptions=data[2] #Footernotes
+    available,unavailable,zeroboth,zerodislikes,zerolikes=Exceptions[0],Exceptions[1],Exceptions[2],Exceptions[3],Exceptions[4]
     plt.figure(figsize=(10, 5))
     plt.xlabel("Number of Dislikes")
     plt.ylabel("Number of Likes")
-    plt.title("Likes vs Dislikes in top search results")
+    header="Likes vs Dislikes in top search results \n"
+    plt.title(header)
+    footer=str(available)+" Videos searched , Data unavailable for "+str(unavailable)+" videos"
+    footer=footer+"\n Videos with likes and dislikes both zero : "+str(zeroboth)+", Videos with only likes zero : "+str(zerolikes)+", Videos with only dislikes zero : "+str(zerodislikes)
+    plt.figtext(0.51,-0.05,footer,ha="center",bbox={"facecolor":"red", "alpha":0.5, "pad":5})
+    plt.scatter(x, y, marker='.', color='red')
+    plt.show()
+
+def ScatViewsComments(data):
+    # data=(Views, Comments, Exceptions) tuple of lists
+    y = data[0] #Views
+    x = data[1] #Comments
+    Exceptions=data[2] #Footernotes
+    available,unavailable,zeroboth,zeroviews,zerocomments=Exceptions[0],Exceptions[1],Exceptions[2],Exceptions[3],Exceptions[4]
+    plt.figure(figsize=(10, 5))
+    header="Views vs Comments in top search results \n"
+    plt.title(header)
+    plt.xlabel("Number of Comments")
+    plt.ylabel("Number of Views")
+    footer=str(available)+" Videos searched , Data unavailable for "+str(unavailable)+" videos"
+    footer=footer+"\n Videos with views and comments both zero : "+str(zeroboth)+", Videos with only comments zero : "+str(zerocomments)+", Videos with only views zero : "+str(zeroviews)
+    plt.figtext(0.51,-0.05,footer,ha="center",bbox={"facecolor":"red", "alpha":0.5, "pad":5})
     plt.scatter(x, y, marker='.', color='red')
     plt.show()

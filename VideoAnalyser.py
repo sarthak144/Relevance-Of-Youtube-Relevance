@@ -220,26 +220,83 @@ def GetVideoTagsCount(Videos):
 
 
 def GetVideoLikesDislikes(Videos):
+    zerolikes=0
+    zerodislikes=0
+    zeroboth=0
+    unavailable=0
+    available=0
     Likes=[]
     Dislikes=[]
     for i in Videos:
-        Likes.append(log10(int(Videos[i]['VideoLikes'])))
-        Dislikes.append(log10(int(Videos[i]['VideoDislikes'])))
-    return((Likes,Dislikes))
+        try:
+            available+=1
+            Likes.append(log10(int(Videos[i]['VideoLikes'])))
+            Dislikes.append(log10(int(Videos[i]['VideoDislikes'])))
+        except:
+            if Videos[i]['VideoLikes']=="Unavailable" or Videos[i]['VideoDislikes']=="Unavailable":
+                unavailable+=1
+            else:
+                if(int(Videos[i]['VideoLikes'])==0 and int(Videos[i]['VideoDislikes'])==0):
+                    zeroboth+=1
+                elif(int(Videos[i]['VideoDislikes'])==0):
+                    zerodislikes+=0
+                else:
+                    zerolikes+=1
+    Exceptions=[available,unavailable,zeroboth,zerodislikes,zerolikes]
+
+
+    return((Likes,Dislikes,Exceptions))
 
 def GetVideoViewsLikes(Videos):
+    zeroviews=0
+    zerolikes=0
+    zeroboth=0
+    unavailable=0
+    available=0
     Likes=[]
     Views=[]
     for i in Videos:
-        Likes.append(log10(int(Videos[i]['VideoLikes'])))
-        Views.append(log10(int(Videos[i]['VideoViews'])))
-    return((Views,Likes))
+        try:
+            available+=1
+            Likes.append(log10(int(Videos[i]['VideoLikes'])))
+            Views.append(log10(int(Videos[i]['VideoViews'])))
+        except:
+            if Videos[i]['VideoLikes']=="Unavailable" or Videos[i]['VideoViews']=="Unavailable":
+                unavailable+=1
+            else:
+                if(int(Videos[i]['VideoLikes'])==0 and int(Videos[i]['VideoViews'])==0):
+                    zeroboth+=1
+                elif(int(Videos[i]['VideoViews'])==0):
+                    zeroviews+=0
+                else:
+                    zerolikes+=1
+    Exceptions=[available,unavailable,zeroboth,zeroviews,zerolikes]
+
+    return((Views,Likes,Exceptions))
 
 def GetVideoViewsComments(Videos):
+    zeroviews=0
+    zerocomments=0
+    zeroboth=0
+    unavailable=0
+    available=0
     Comments=[]
     Views=[]
     for i in Videos:
-        Comments.append(log10(int(Videos[i]['VideoComments'])))
-        Views.append(log10(int(Videos[i]['VideoViews'])))
-    return((Views,Comments))
-
+        # print(Videos[i]['VideoComments'])
+        try:
+            available+=1
+            Comments.append(log10(int(Videos[i]['VideoComments'])))
+            Views.append(log10(int(Videos[i]['VideoViews'])))
+        except:
+            if Videos[i]['VideoComments']=="Unavailable" or Videos[i]['VideoViews']=="Unavailable":
+                unavailable+=1
+            else:
+                if(int(Videos[i]['VideoComments'])==0 and int(Videos[i]['VideoViews'])==0):
+                    zeroboth+=1
+                elif(int(Videos[i]['VideoViews'])==0):
+                    zeroviews+=0
+                else:
+                    zerocomments+=1
+    Exceptions=[available,unavailable,zeroboth,zeroviews,zerocomments]
+    return((Views,Comments,Exceptions))

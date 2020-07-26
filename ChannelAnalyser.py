@@ -128,10 +128,14 @@ def GetChannelTopics(Channels):
             UniqueTopics=set(Channels[i]['ChannelTopics'])
             UniqueTopics=list(UniqueTopics)
             for j in UniqueTopics:
-                if IDs[j] not in ChannelTopics:
-                    ChannelTopics[IDs[j]]=1
-                else:
-                    ChannelTopics[IDs[j]]+=1
+                try:
+                    if IDs[j] not in ChannelTopics:
+                        ChannelTopics[IDs[j]]=1
+                    else:
+                        ChannelTopics[IDs[j]]+=1
+                except:
+                    continue
+                    # Some IDs mapped topic is not available yet
     
     return ChannelTopics
 
