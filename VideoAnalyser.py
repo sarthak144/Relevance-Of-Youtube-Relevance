@@ -300,3 +300,30 @@ def GetVideoViewsComments(Videos):
                     zerocomments+=1
     Exceptions=[available,unavailable,zeroboth,zeroviews,zerocomments]
     return((Views,Comments,Exceptions))
+
+def GetVideoAll4(Videos):
+    data={}
+    for i in Videos:
+        Title=Videos[i]["VideoTitle"]
+        Views=Videos[i]["VideoViews"]
+        Likes=Videos[i]["VideoLikes"]
+        Dislikes=Videos[i]["VideoDislikes"]
+        Comments=Videos[i]["VideoComments"]
+        data[Title]=[]
+        if(Views!='Unavailable' and Views!='0'):
+            data[Title].append(log10(int(Views)))
+        else:
+            data[Title].append(0)
+        if(Likes!='Unavailable' and Likes!='0'):
+            data[Title].append(log10(int(Likes)))
+        else:
+            data[Title].append(0)
+        if(Dislikes!='Unavailable' and Dislikes!='0'):
+            data[Title].append(log10(int(Dislikes)))
+        else:
+            data[Title].append(0)
+        if(Comments!='Unavailable' and Comments!='0'):
+            data[Title].append(log10(int(Comments)))
+        else:
+            data[Title].append(0)
+    return data

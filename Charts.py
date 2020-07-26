@@ -122,7 +122,7 @@ def BarVideoViews(data):
                     ha='center')
     plt.show()
 
-def HorizontalBar(data):
+def HorizontalBarOverview(data):
     # data = {
     # 'Channel for kids': list(GetChannelForKids(Channels).values()),
     # 'Channel comment moderation': list(GetChannelCommentModeration(Channels).values()),
@@ -151,7 +151,7 @@ def HorizontalBar(data):
     ax.invert_yaxis()
 
     ax.set_xlim(0, np.sum(data, axis=1).max())
-    plt.title("Various aspects of top search results \n (Results from "+str(sumchannel)+" and "+str(sumvideo)+" videos)", x=0.35,y=1.04)
+    plt.title("Various aspects of top search results \n (Results from "+str(sumchannel)+" channels and "+str(sumvideo)+" videos)", x=0.35,y=1.04)
     for i, (colname, color) in enumerate(zip(category_names, category_colors)):
         widths = data[:, i]
         starts = data_cum[:, i] - widths
@@ -216,4 +216,35 @@ def ScatViewsComments(data):
     footer=footer+"\n Videos with views and comments both zero : "+str(zeroboth)+", Videos with only comments zero : "+str(zerocomments)+", Videos with only views zero : "+str(zeroviews)
     plt.figtext(0.51,-0.05,footer,ha="center",bbox={"facecolor":"red", "alpha":0.5, "pad":5})
     plt.scatter(x, y, marker='.', color='red')
+    plt.show()
+
+def HorizontalBarAll4(data):
+    category_names = ['Views', 'Likes', 'Dislikes', 'Comments']
+    labels = list(data.keys())
+    data = np.array(list(data.values()))
+    data_cum = data.cumsum(axis=1)
+
+    category_colors=['lightblue','#00ff00','#ff4d4d', 'yellow']
+
+    fig, ax = plt.subplots(figsize=(20, 30))
+    ax.invert_yaxis()
+    ax.set_xlim(0, np.sum(data, axis=1).max())
+    
+    fontsup=FontProperties(fname = 'Nirmala.ttf')
+    ax.set_yticklabels(labels, rotation=0, fontsize=10, fontproperties=fontsup)
+    header="Overall engagement of videos in top search results \n"
+    plt.title(header,x=0.3,y=1, ha='center')
+    for i, (colname, color) in enumerate(zip(category_names, category_colors)):
+        widths = data[:, i]
+        starts = data_cum[:, i] - widths
+        ax.barh(labels, widths, left=starts, height=0.5,
+                label=colname, color=color )
+        xcenters = starts + widths / 2
+        
+        for y, (x, c) in enumerate(zip(xcenters, widths)):
+            if int(c)!=0:
+                ax.text(x, y, str(int(round(10**c))), ha='center', va='center',
+                    color='black', size="x-small")
+    ax.legend(ncol=len(category_names))
+
     plt.show()
