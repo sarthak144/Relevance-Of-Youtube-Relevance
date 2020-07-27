@@ -216,6 +216,7 @@ def GetVideoTagsCount(Videos):
         VideoTags=Videos[i]['VideoTags']
         s=str(VideoTags)
         s=s[1:-1]
+        s=s.lower()
         s=s.replace("'", '')
         s=s.replace(",", '')
         slist=s.split()

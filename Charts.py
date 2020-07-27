@@ -1,7 +1,9 @@
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib.font_manager import FontProperties
 
-def BarChannelAge(data, text):
+def BarChannelAge(data,text):
     xtags = list(data.keys()) 
     yvalues = list(data.values())
     fig = plt.figure(figsize = (10, 5))
@@ -16,10 +18,10 @@ def BarChannelAge(data, text):
                     textcoords="offset points", # how to position the text
                     xytext=(0,3), # distance from text to points (x,y)
                     ha='center')
-    plt.savefig(str(str(text)+"_BarChannelAge"))
+    plt.savefig("Images/Charts/"+str(str(text)+"_BarChannelAge"))
     # plt.show()
 
-def BarChannelViews(data, text):
+def BarChannelViews(data,text):
     xtags = list(data.keys()) 
     yvalues = list(data.values())
     fig = plt.figure(figsize = (10, 5))
@@ -34,10 +36,10 @@ def BarChannelViews(data, text):
                     textcoords="offset points", # how to position the text
                     xytext=(0,3), # distance from text to points (x,y)
                     ha='center')
-    plt.savefig(str(str(text)+"_BarChannelViews"))
+    plt.savefig("Images/Charts/"+str(str(text)+"_BarChannelViews"))
     # plt.show()
 
-def BarChannelSubscribers(data):
+def BarChannelSubscribers(data,text):
     xtags = list(data.keys()) 
     yvalues = list(data.values())
     fig = plt.figure(figsize = (10, 5))
@@ -52,9 +54,10 @@ def BarChannelSubscribers(data):
                     textcoords="offset points", # how to position the text
                     xytext=(0,3), # distance from text to points (x,y)
                     ha='center')
-    plt.show()
+    plt.savefig("Images/Charts/"+str(str(text)+"_BarChannelSubscribers"))
+    # plt.show()
 
-def BarChannelVideos(data):
+def BarChannelVideos(data,text):
     xtags = list(data.keys()) 
     yvalues = list(data.values())
     fig = plt.figure(figsize = (10, 5))
@@ -69,9 +72,10 @@ def BarChannelVideos(data):
                     textcoords="offset points", # how to position the text
                     xytext=(0,3), # distance from text to points (x,y)
                     ha='center')
-    plt.show()
+    plt.savefig("Images/Charts/"+str(str(text)+"_BarChannelVideos"))
+    # plt.show()
 
-def BarVideoAges(data):
+def BarVideoAges(data,text):
     xtags = list(data.keys()) 
     yvalues = list(data.values())
     fig = plt.figure(figsize = (10, 5))
@@ -86,9 +90,10 @@ def BarVideoAges(data):
                     textcoords="offset points", # how to position the text
                     xytext=(0,3), # distance from text to points (x,y)
                     ha='center')
-    plt.show()
+    plt.savefig("Images/Charts/"+str(str(text)+"_BarVideoAges"))
+    # plt.show()
 
-def BarVideoDuration(data):
+def BarVideoDuration(data,text):
     xtags = list(data.keys()) 
     yvalues = list(data.values())
     fig = plt.figure(figsize = (10, 5))
@@ -103,9 +108,10 @@ def BarVideoDuration(data):
                     textcoords="offset points", # how to position the text
                     xytext=(0,3), # distance from text to points (x,y)
                     ha='center')
-    plt.show()
+    plt.savefig("Images/Charts/"+str(str(text)+"_BarVideoDuration"))
+    # plt.show()
 
-def BarVideoViews(data):
+def BarVideoViews(data,text):
     xtags = list(data.keys()) 
     yvalues = list(data.values())
     fig = plt.figure(figsize = (10, 5))
@@ -120,9 +126,10 @@ def BarVideoViews(data):
                     textcoords="offset points", # how to position the text
                     xytext=(0,3), # distance from text to points (x,y)
                     ha='center')
-    plt.show()
+    plt.savefig("Images/Charts/"+str(str(text)+"_BarVideoViews"))
+    # plt.show()
 
-def HorizontalBarOverview(data):
+def HorizontalBarOverview(data,text):
     # data = {
     # 'Channel for kids': list(GetChannelForKids(Channels).values()),
     # 'Channel comment moderation': list(GetChannelCommentModeration(Channels).values()),
@@ -145,9 +152,9 @@ def HorizontalBarOverview(data):
     data = np.array(list(data.values()))
     data_cum = data.cumsum(axis=1)
 
-    category_colors=['#00ff00','red','lightgrey']
+    category_colors=['#00ff00','#ff4d4d','lightgrey']
 
-    fig, ax = plt.subplots(figsize=(10, 15))
+    fig, ax = plt.subplots(figsize=(20, 15))
     ax.invert_yaxis()
 
     ax.set_xlim(0, np.sum(data, axis=1).max())
@@ -163,11 +170,12 @@ def HorizontalBarOverview(data):
             if int(c)!=0:
                 ax.text(x, y, str(int(c)), ha='center', va='center',
                     color='black')
-    ax.legend(ncol=len(category_names))
+    ax.legend(ncol=len(category_names), fontsize='medium')
 
-    plt.show()
+    plt.savefig("Images/Charts/"+str(str(text)+"_HorizontalBarOverview"))
+    # plt.show()
 
-def ScatViewsLikes(data):
+def ScatViewsLikes(data,text):
     # data=(Views, Likes, Exceptions) tuple of lists
     y = data[0] #Views
     x = data[1] #Likes
@@ -182,9 +190,10 @@ def ScatViewsLikes(data):
     footer=footer+"\n Videos with views and likes both zero : "+str(zeroboth)+", Videos with only likes zero : "+str(zerolikes)+", Videos with only views zero : "+str(zeroviews)
     plt.figtext(0.51,-0.05,footer,ha="center",bbox={"facecolor":"red", "alpha":0.5, "pad":5})
     plt.scatter(x, y, marker='.', color='red')
-    plt.show()
+    plt.savefig("Images/Charts/"+str(str(text)+"_ScatViewsLikes"),bbox_inches = 'tight')
+    # plt.show()
 
-def ScatLikesDislikes(data):
+def ScatLikesDislikes(data,text):
     # data=(Likes, Dislikes, Exceptions) tuple of lists
     y = data[0] #Likes
     x = data[1] #Dislikes
@@ -199,9 +208,10 @@ def ScatLikesDislikes(data):
     footer=footer+"\n Videos with likes and dislikes both zero : "+str(zeroboth)+", Videos with only likes zero : "+str(zerolikes)+", Videos with only dislikes zero : "+str(zerodislikes)
     plt.figtext(0.51,-0.05,footer,ha="center",bbox={"facecolor":"red", "alpha":0.5, "pad":5})
     plt.scatter(x, y, marker='.', color='red')
-    plt.show()
+    plt.savefig("Images/Charts/"+str(str(text)+"_ScatLikesDislikes"),bbox_inches = 'tight')
+    # plt.show()
 
-def ScatViewsComments(data):
+def ScatViewsComments(data,text):
     # data=(Views, Comments, Exceptions) tuple of lists
     y = data[0] #Views
     x = data[1] #Comments
@@ -216,46 +226,112 @@ def ScatViewsComments(data):
     footer=footer+"\n Videos with views and comments both zero : "+str(zeroboth)+", Videos with only comments zero : "+str(zerocomments)+", Videos with only views zero : "+str(zeroviews)
     plt.figtext(0.51,-0.05,footer,ha="center",bbox={"facecolor":"red", "alpha":0.5, "pad":5})
     plt.scatter(x, y, marker='.', color='red')
-    plt.show()
+    plt.savefig("Images/Charts/"+str(str(text)+"_ScatViewsComments"),bbox_inches = 'tight')
+    # plt.show()
 
-def HorizontalBarAll4(data):
-    category_names = ['Views', 'Likes', 'Dislikes', 'Comments']
-    labels = list(data.keys())
-    data = np.array(list(data.values()))
-    data_cum = data.cumsum(axis=1)
+def HorizontalBarAll4(data,text):
+    newfont = 'Nirmala.ttf'
 
+    # configure the Hindi font
+    hindi_font = FontProperties(fname=newfont)
     category_colors=['lightblue','#00ff00','#ff4d4d', 'yellow']
-
-    fig, ax = plt.subplots(figsize=(30, 50))
+    # create the dataframe
+    df = pd.DataFrame(data, index=['Views', 'Likes', 'Dislikes', 'Comments'])
+    # plot df
+    ax = df.T.plot.barh(stacked=True, figsize=(30, 50), color=category_colors)
     ax.invert_yaxis()
-    ax.set_xlim(0, np.sum(data, axis=1).max())
-    
-    fontsup=FontProperties(fname = 'Nirmala.ttf')
-    ax.set_yticklabels(labels, rotation=0, fontsize=10, fontproperties=fontsup)
+    # get the y tick labels
+    yticklab = [item.get_text() for item in ax.get_yticklabels()]
+
+    # set the labels with the ttf
+    ax.set_yticklabels(yticklab, fontproperties=hindi_font)
     header="Overall engagement of videos in top search results \n"
     plt.title(header,x=0.3,y=1, ha='center')
-    for i, (colname, color) in enumerate(zip(category_names, category_colors)):
-        widths = data[:, i]
-        starts = data_cum[:, i] - widths
-        ax.barh(labels, widths, left=starts, height=0.5,
-                label=colname, color=color )
-        xcenters = starts + widths / 2
-        
-        for y, (x, c) in enumerate(zip(xcenters, widths)):
-            if int(c)!=0:
-                ax.text(x, y, str(int(round(10**c))), ha='center', va='center',
-                    color='black', size="x-small")
-    ax.legend(ncol=len(category_names))
+    # annotate the bars
+    for rect in ax.patches:
+        # Find where everything is located
+        height = rect.get_height()
+        width = rect.get_width()
+        x = rect.get_x()
+        y = rect.get_y()
 
-    plt.show()
+        # The width of the bar is the count value and can used as the label
+        label_text = int(round(10**width))
 
-def Table(ChannelTopics, ChannelCategories, VideoTags, VideoTopics, VideoCategories):
-    negatives=['Unavailable','is','am','the','of','and','be']
-    cells=[['','','','',''],['','','','',''],['','','','',''],['','','','',''],['','','','','']]
+        label_x = x + width / 2
+        label_y = y + height / 2
+
+        # don't include label if it's equivalently 0
+        if width > 0.001:
+            ax.text(label_x, label_y, label_text, ha='center', va='center', fontsize=8)
+
+    plt.savefig("Images/Charts/"+str(str(text)+"_HorizontalBarAll4"),bbox_inches = 'tight')
+    # plt.show()
+
+def TableChannels(ChannelCount,ChannelTopics, ChannelCategories,text):
+
+    cells=[['','',''],['','',''],['','',''],['','',''],['','','']]
+
+
+    count=0
+    j=0
+    for i in ChannelCount:
+        if(count==5):
+            break
+        if ChannelCount[i]>1:
+            cells[j][0]=i
+            count+=1
+            j=j+1
+
 
     count=0
     j=0
     for i in ChannelTopics:
+        if(count==5):
+            break
+
+        cells[j][1]=i
+        count+=1
+        j=j+1
+
+    count=0
+    j=0
+    for i in ChannelCategories:
+        if(count==5):
+            break
+        cells[j][2]=i
+        count+=1
+        j=j+1
+
+
+        
+    columns = ("Most Popular Channels(>1 Videos)","Channel Topics", "Channel Categories")
+    
+    fig, ax = plt.subplots(figsize=(20, 7))
+    ax.axis('tight')
+    ax.axis('off')
+    colors = [["#ffe6e6","#ffe6e6","#ffe6e6"],[ "#ff8080","#ff8080","#ff8080"],["#ffe6e6","#ffe6e6","#ffe6e6"],[ "#ff8080","#ff8080","#ff8080"],["#ffe6e6","#ffe6e6","#ffe6e6"]]
+    colorshead = ["#1a0000","#1a0000","#1a0000"]
+
+    the_table = ax.table(cellText=cells,colColours=colorshead,cellColours=colors,
+                        colLabels=columns,loc='center')
+    
+    for i in range(3):
+        the_table[(0, i)].get_text().set_color('white')
+    the_table.scale(1, 4)
+    header="Top channels, categories and topics from channels in top search results "
+    plt.title(header,x=0.5,y=.95, ha='center')
+    plt.savefig("Images/Charts/"+str(str(text)+"_TableChannel"))
+    # plt.show()
+
+
+def TableVideos( VideoTags, VideoTopics, VideoCategories,text):
+    negatives=['Unavailable','is','am','the','of','and','be',"in","for","that","these","bi"]
+    cells=[['','',''],['','',''],['','',''],['','',''],['','','']]
+
+    count=0
+    j=0
+    for i in VideoTags:
         if(count==5):
             break
         if (i not in negatives):
@@ -265,7 +341,7 @@ def Table(ChannelTopics, ChannelCategories, VideoTags, VideoTopics, VideoCategor
 
     count=0
     j=0
-    for i in ChannelCategories:
+    for i in VideoTopics:
         if(count==5):
             break
         if (i not in negatives):
@@ -275,7 +351,7 @@ def Table(ChannelTopics, ChannelCategories, VideoTags, VideoTopics, VideoCategor
 
     count=0
     j=0
-    for i in VideoTags:
+    for i in VideoCategories:
         if(count==5):
             break
         if (i not in negatives):
@@ -283,41 +359,22 @@ def Table(ChannelTopics, ChannelCategories, VideoTags, VideoTopics, VideoCategor
             count+=1
             j=j+1
 
-    count=0
-    j=0
-    for i in VideoTopics:
-        if(count==5):
-            break
-        if (i not in negatives):
-            cells[j][3]=i
-            count+=1
-            j=j+1
-
-    count=0
-    j=0
-    for i in VideoCategories:
-        if(count==5):
-            break
-        if (i not in negatives):
-            cells[j][4]=i
-            count+=1
-            j=j+1
-
         
-    columns = ("Channel Topics", "Channel Categories", "Video Tags", "Video Topics", "Video Categories")
+    columns = ("Video Tags", "Video Topics", "Video Categories")
     
     fig, ax = plt.subplots(figsize=(20, 7))
     ax.axis('tight')
     ax.axis('off')
-    colors = [["#ffe6e6","#ffe6e6","#ffe6e6","#ffe6e6","#ffe6e6"],[ "#ff8080","#ff8080","#ff8080","#ff8080","#ff8080"],["#ffe6e6","#ffe6e6","#ffe6e6","#ffe6e6","#ffe6e6"],[ "#ff8080","#ff8080","#ff8080","#ff8080","#ff8080"],["#ffe6e6","#ffe6e6","#ffe6e6","#ffe6e6","#ffe6e6"]]
-    colorshead = ["#1a0000","#1a0000","#1a0000","#1a0000","#1a0000"]
+    colors = [["#ffe6e6","#ffe6e6","#ffe6e6"],[ "#ff8080","#ff8080","#ff8080"],["#ffe6e6","#ffe6e6","#ffe6e6"],[ "#ff8080","#ff8080","#ff8080"],["#ffe6e6","#ffe6e6","#ffe6e6"]]
+    colorshead = ["#1a0000","#1a0000","#1a0000"]
 
     the_table = ax.table(cellText=cells,colColours=colorshead,cellColours=colors,
                         colLabels=columns,loc='center')
     
-    for i in range(5):
+    for i in range(3):
         the_table[(0, i)].get_text().set_color('white')
     the_table.scale(1, 4)
-    header="Top topics, categories and tags from channels and videos in top search results "
+    header="Top topics, categories and tags from videos in top search results "
     plt.title(header,x=0.5,y=.95, ha='center')
-    plt.show()
+    plt.savefig("Images/Charts/"+str(str(text)+"_TableVideos"))
+    # plt.show()

@@ -1,14 +1,21 @@
 from apiclient.discovery import build
 import urllib.request
 
-apikey='add your api-key here'
+apikey='add your youtube data v3 api key here'
 youtube = build('youtube', 'v3', developerKey=apikey)
 
 
-def SearchResults(text):
+def SearchResults(text,NumPages):
+    result={'items':[]}
     NextPageToken= None
-    request = youtube.search().list(q=text, part='snippet', type='video', maxResults=2,pageToken= NextPageToken )
-    result = request.execute()
+    for i in range(NumPages):
+
+        request = youtube.search().list(q=text, part='snippet', type='video', maxResults=50,pageToken= NextPageToken )
+        resulttemp = request.execute()
+        NextPageToken=resulttemp["nextPageToken"]
+        result['items']+=resulttemp['items']
+
+    # print(dumps(result,indent=2))
     return result
 
 
