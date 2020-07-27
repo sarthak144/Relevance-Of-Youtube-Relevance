@@ -1,14 +1,19 @@
 import dateutil.parser
+from datetime import date,timedelta
 from IDS import *
 
 
 def GetChannelCount(Videos, Channels):
-    ChannelCount = {}
+    ChannelCount={}
     for i in Videos:
         if Channels[Videos[i]['ChannelID']]['ChannelTitle'] not in ChannelCount:
             ChannelCount[Channels[Videos[i]['ChannelID']]['ChannelTitle']]=1
         else:
             ChannelCount[Channels[Videos[i]['ChannelID']]['ChannelTitle']]+=1
+    sort_ChannelCount = sorted(ChannelCount.items(), key=lambda x: x[1], reverse=True)
+    ChannelCount={}
+    for i in sort_ChannelCount:
+        ChannelCount[i[0]]=i[1]
     return ChannelCount
 
 def GetChannelAge(Channels):
@@ -136,7 +141,10 @@ def GetChannelTopics(Channels):
                 except:
                     continue
                     # Some IDs mapped topic is not available yet
-    
+    sort_ChannelTopics = sorted(ChannelTopics.items(), key=lambda x: x[1], reverse=True)
+    ChannelTopics={}
+    for i in sort_ChannelTopics:
+        ChannelTopics[i[0]]=i[1]
     return ChannelTopics
 
 def GetChannelCategories(Channels):
@@ -158,6 +166,10 @@ def GetChannelCategories(Channels):
                     ChannelCategories[category]=1
                 else:
                     ChannelCategories[category]+=1
+    sort_ChannelCategories = sorted(ChannelCategories.items(), key=lambda x: x[1], reverse=True)
+    ChannelCategories={}
+    for i in sort_ChannelCategories:
+        ChannelCategories[i[0]]=i[1]
     return ChannelCategories
 
 

@@ -1,4 +1,5 @@
 import dateutil.parser
+from datetime import date,timedelta
 from IDS import *
 from math import log10
 
@@ -170,10 +171,17 @@ def GetVideoRelevantTopics(Videos):
             UniqueTopics=set(Videos[i]['VideoRelevantTopics'])
             UniqueTopics=list(UniqueTopics)
             for j in UniqueTopics:
-                if IDs[j] not in VideoRelevantTopics:
-                    VideoRelevantTopics[IDs[j]]=1
-                else:
-                    VideoRelevantTopics[IDs[j]]+=1
+                try:
+                    if IDs[j] not in VideoRelevantTopics:
+                        VideoRelevantTopics[IDs[j]]=1
+                    else:
+                        VideoRelevantTopics[IDs[j]]+=1
+                except:
+                    continue
+    sort_VideoRelevantTopics = sorted(VideoRelevantTopics.items(), key=lambda x: x[1], reverse=True)
+    VideoRelevantTopics={}
+    for i in sort_VideoRelevantTopics:
+        VideoRelevantTopics[i[0]]=i[1]
     
     return VideoRelevantTopics
 
@@ -196,6 +204,10 @@ def GetVideoCategories(Videos):
                     VideoCategories[category]=1
                 else:
                     VideoCategories[category]+=1
+    sort_VideoCategories = sorted(VideoCategories.items(), key=lambda x: x[1], reverse=True)
+    VideoCategories={}
+    for i in sort_VideoCategories:
+        VideoCategories[i[0]]=i[1]
     return VideoCategories
 
 def GetVideoTagsCount(Videos):

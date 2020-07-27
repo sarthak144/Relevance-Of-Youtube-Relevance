@@ -248,3 +248,76 @@ def HorizontalBarAll4(data):
     ax.legend(ncol=len(category_names))
 
     plt.show()
+
+def Table(ChannelTopics, ChannelCategories, VideoTags, VideoTopics, VideoCategories):
+    negatives=['Unavailable','is','am','the','of','and','be']
+    cells=[['','','','',''],['','','','',''],['','','','',''],['','','','',''],['','','','','']]
+
+    count=0
+    j=0
+    for i in ChannelTopics:
+        if(count==5):
+            break
+        if (i not in negatives):
+            cells[j][0]=i
+            count+=1
+            j=j+1
+
+    count=0
+    j=0
+    for i in ChannelCategories:
+        if(count==5):
+            break
+        if (i not in negatives):
+            cells[j][1]=i
+            count+=1
+            j=j+1
+
+    count=0
+    j=0
+    for i in VideoTags:
+        if(count==5):
+            break
+        if (i not in negatives):
+            cells[j][2]=i
+            count+=1
+            j=j+1
+
+    count=0
+    j=0
+    for i in VideoTopics:
+        if(count==5):
+            break
+        if (i not in negatives):
+            cells[j][3]=i
+            count+=1
+            j=j+1
+
+    count=0
+    j=0
+    for i in VideoCategories:
+        if(count==5):
+            break
+        if (i not in negatives):
+            cells[j][4]=i
+            count+=1
+            j=j+1
+
+        
+    columns = ("Channel Topics", "Channel Categories", "Video Tags", "Video Topics", "Video Categories")
+    
+    fig, ax = plt.subplots(figsize=(20, 7))
+    ax.axis('tight')
+    ax.axis('off')
+    colors = [["#ffe6e6","#ffe6e6","#ffe6e6","#ffe6e6","#ffe6e6"],[ "#ff8080","#ff8080","#ff8080","#ff8080","#ff8080"],["#ffe6e6","#ffe6e6","#ffe6e6","#ffe6e6","#ffe6e6"],[ "#ff8080","#ff8080","#ff8080","#ff8080","#ff8080"],["#ffe6e6","#ffe6e6","#ffe6e6","#ffe6e6","#ffe6e6"]]
+    colorshead = ["#1a0000","#1a0000","#1a0000","#1a0000","#1a0000"]
+
+    the_table = ax.table(cellText=cells,colColours=colorshead,cellColours=colors,
+                        colLabels=columns,loc='center')
+    
+    for i in range(5):
+        the_table[(0, i)].get_text().set_color('white')
+    the_table.scale(1, 4)
+    header="Top topics, categories and tags from channels and videos in top search results "
+    plt.title(header,x=0.5,y=.95, ha='center')
+    plt.show()
