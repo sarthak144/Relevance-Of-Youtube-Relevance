@@ -1,12 +1,14 @@
 from apiclient.discovery import build
 import urllib.request
+# from collections import Counter
 
-apikey='add your youtube data v3 api key here'
+
+apikey='your api-key here'
 youtube = build('youtube', 'v3', developerKey=apikey)
 
 
 def SearchResults(text,NumPages):
-    result={'items':[]}
+    result={'items':[],'region':''}
     NextPageToken= None
     for i in range(NumPages):
 
@@ -14,6 +16,10 @@ def SearchResults(text,NumPages):
         resulttemp = request.execute()
         NextPageToken=resulttemp["nextPageToken"]
         result['items']+=resulttemp['items']
+        try:
+            result["region"]=resulttemp['regionCode']
+        except:
+            continue
 
     # print(dumps(result,indent=2))
     return result
@@ -73,58 +79,90 @@ def GetVideos(result):
         part="contentDetails,id,snippet,statistics,status,topicDetails",
         id=i)
         response = request.execute()
+        if(response['items']!=[]):
+            try:
+                Videos[i]['Date']=response['items'][0]['snippet']['publishedAt']
+            except:
+                Videos[i]['Date']="Unavailable"
+                # print("video date")
+                # print(response['items'])
+                # print(i)
+            try:
+                Videos[i]['ChannelID']=response['items'][0]['snippet']['channelId']
+            except:
+                Videos[i]['ChannelID']="Unavailable"
+                # print("Video channel id")
+                # print(response['items'])
+                # print(response)
+            try:
+                Videos[i]['VideoTitle']=response['items'][0]['snippet']['title']
+            except:
+                Videos[i]['VideoTitle']="Unavailable"
+            try:
+                Videos[i]['VideoDescription']=response['items'][0]['snippet']['description']
+            except:
+                Videos[i]['VideoDescription']="Unavailable"
 
-        Videos[i]['Date']=response['items'][0]['snippet']['publishedAt']
-        Videos[i]['ChannelID']=response['items'][0]['snippet']['channelId']
-        Videos[i]['VideoTitle']=response['items'][0]['snippet']['title']
+            try:
+                Videos[i]['VideoThumbnailURL']=response['items'][0]['snippet']['thumbnails']['default']['url']
+            except:
+                Videos[i]['VideoThumbnailURL']="Unavailable"
+            try:
+                Videos[i]['VideoTags']=response['items'][0]['snippet']['tags']
+            except:
+                Videos[i]['VideoTags']="Unavailable"
+            try:
+                Videos[i]['VideoDuration']=response['items'][0]['contentDetails']['duration']
+            except:
+                Videos[i]['VideoDuration']="Unavailable"
+            try:
+                Videos[i]['VideoDefinition']=response['items'][0]['contentDetails']['definition']
+            except:
+                Videos[i]['VideoDefinition']="Unavailable"
+            try:
+                Videos[i]['VideoCaption']=response['items'][0]['contentDetails']['caption']
+            except:
+                Videos[i]['VideoCaption']="Unavailable"
+            try:
+                Videos[i]['VideoLicense']=response['items'][0]['contentDetails']['licensedContent']
+            except:
+                Videos[i]['VideoLicense']="Unavailable"
+            try:
+                Videos[i]['VideoEmbeddable']=response['items'][0]['status']['embeddable']
+            except:
+                Videos[i]['VideoEmbeddable']="Unavailable"
+            try:
+                Videos[i]['VideoKids']=response['items'][0]['status']['madeForKids']
+            except:
+                Videos[i]['VideoKids']="Unavailable"
+            try:
+                Videos[i]['VideoViews']=response['items'][0]['statistics']['viewCount']
+            except:
+                Videos[i]['VideoViews']="Unavailable"
 
-        try:
-            Videos[i]['VideoDescription']=response['items'][0]['snippet']['description']
-        except:
-            Videos[i]['VideoDescription']="Unavailable"
+            try:
+                Videos[i]['VideoLikes']=response['items'][0]['statistics']['likeCount']
+            except:
+                Videos[i]['VideoLikes']="Unavailable"
 
-        Videos[i]['VideoThumbnailURL']=response['items'][0]['snippet']['thumbnails']['default']['url']
+            try:
+                Videos[i]['VideoDislikes']=response['items'][0]['statistics']['dislikeCount']
+            except:
+                Videos[i]['VideoDislikes']="Unavailable"
 
-        try:
-            Videos[i]['VideoTags']=response['items'][0]['snippet']['tags']
-        except:
-            Videos[i]['VideoTags']="Unavailable"
+            try:
+                Videos[i]['VideoComments']=response['items'][0]['statistics']['commentCount']
+            except:
+                Videos[i]['VideoComments']="Unavailable"
 
-        Videos[i]['VideoDuration']=response['items'][0]['contentDetails']['duration']
-        Videos[i]['VideoDefinition']=response['items'][0]['contentDetails']['definition']
-        Videos[i]['VideoCaption']=response['items'][0]['contentDetails']['caption']
-        Videos[i]['VideoLicense']=response['items'][0]['contentDetails']['licensedContent']
-        Videos[i]['VideoEmbeddable']=response['items'][0]['status']['embeddable']
-        try:
-            Videos[i]['VideoKids']=response['items'][0]['status']['madeForKids']
-        except:
-            Videos[i]['VideoKids']="Unavailable"
+            try:
+                Videos[i]['VideoRelevantTopics']=response['items'][0]['topicDetails']['relevantTopicIds']
+            except:
+                Videos[i]['VideoRelevantTopics']="Unavailable"
 
-        Videos[i]['VideoViews']=response['items'][0]['statistics']['viewCount']
-
-        try:
-            Videos[i]['VideoLikes']=response['items'][0]['statistics']['likeCount']
-        except:
-            Videos[i]['VideoLikes']="Unavailable"
-
-        try:
-            Videos[i]['VideoDislikes']=response['items'][0]['statistics']['dislikeCount']
-        except:
-            Videos[i]['VideoDislikes']="Unavailable"
-
-        try:
-            Videos[i]['VideoComments']=response['items'][0]['statistics']['commentCount']
-        except:
-            Videos[i]['VideoComments']="Unavailable"
-
-        try:
-            Videos[i]['VideoRelevantTopics']=response['items'][0]['topicDetails']['relevantTopicIds']
-        except:
-            Videos[i]['VideoRelevantTopics']="Unavailable"
-
-        try:
-            Videos[i]['VideoCategories']=response['items'][0]['topicDetails']['topicCategories']
-        except:
-            Videos[i]['VideoCategories']="Unavailable"
+            try:
+                Videos[i]['VideoCategories']=response['items'][0]['topicDetails']['topicCategories']
+            except:
+                Videos[i]['VideoCategories']="Unavailable"
     return Videos
 

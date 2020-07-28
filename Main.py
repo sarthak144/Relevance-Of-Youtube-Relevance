@@ -1,12 +1,14 @@
 from Search import *
 from ChannelAnalyser import *
 from VideoAnalyser import *
-
+from Report import *
 from Charts import *
 import time
 start_time = time.time()
-text = "English Music"
-result = SearchResults(text,4)
+SearchTime=time.asctime( time.localtime(time.time()))
+text = "gaming"
+NumPages=4
+result = SearchResults(text,NumPages)
 Channels = GetChannels(result)
 Videos = GetVideos(result)
 BarChannelAge(GetChannelAge(Channels),text)
@@ -39,6 +41,12 @@ VideoCategories=GetVideoCategories(Videos)
 TableChannels(ChannelCount,ChannelTopics, ChannelCategories,text)
 TableVideos( VideoTags, VideoTopics, VideoCategories,text)
 end_time = time.time()
+
+NumChannel=len(ChannelCount)
+NumVideo=0
+for i in ChannelCount:
+    NumVideo+=ChannelCount[i]
+GetReport(text,NumPages,NumChannel,NumVideo,result['region'],SearchTime)
+
+
 print(end_time-start_time)
-
-
