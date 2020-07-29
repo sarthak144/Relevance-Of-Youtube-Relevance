@@ -6,8 +6,8 @@ from Charts import *
 import time
 start_time = time.time()
 SearchTime=time.asctime( time.localtime(time.time()))
-text = "gaming"
-NumPages=4
+text = "G.O.A.T."
+NumPages=1
 result = SearchResults(text,NumPages)
 Channels = GetChannels(result)
 Videos = GetVideos(result)
