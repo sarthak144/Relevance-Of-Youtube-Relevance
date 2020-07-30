@@ -2,8 +2,7 @@ from apiclient.discovery import build
 import urllib.request
 # from collections import Counter
 
-
-apikey='add your api-key here'
+apikey='your api-key here'
 youtube = build('youtube', 'v3', developerKey=apikey)
 
 
@@ -104,9 +103,12 @@ def GetVideos(result):
                 Videos[i]['VideoDescription']="Unavailable"
 
             try:
-                Videos[i]['VideoThumbnailURL']=response['items'][0]['snippet']['thumbnails']['default']['url']
+                Videos[i]['VideoThumbnailURL']=response['items'][0]['snippet']['thumbnails']['high']['url']
             except:
-                Videos[i]['VideoThumbnailURL']="Unavailable"
+                try:
+                    Videos[i]['VideoThumbnailURL']=response['items'][0]['snippet']['thumbnails']['default']['url']
+                except:
+                    Videos[i]['VideoThumbnailURL']="Unavailable"
             try:
                 Videos[i]['VideoTags']=response['items'][0]['snippet']['tags']
             except:

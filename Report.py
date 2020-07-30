@@ -5,7 +5,8 @@ from reportlab.platypus import Paragraph, Frame
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfbase import pdfmetrics
 # from reportlab.lib import colors
-
+from math import sqrt
+from math import ceil
 
 
 
@@ -26,6 +27,7 @@ def GetReport(text,NumPages,NumChannel,NumVideo,region,start_time):
     HorizontalBarAll4="Images/Charts/"+str(str(text)+"_HorizontalBarAll4")+".png"
     TableChannel="Images/Charts/"+str(str(text)+"_TableChannel")+".png"
     TableVideos="Images/Charts/"+str(str(text)+"_TableVideos")+".png"
+    TableThumbnail="Images/Charts/"+str(str(text)+"_TableThumbnails")+".png"
 
 
 
@@ -215,8 +217,40 @@ def GetReport(text,NumPages,NumChannel,NumVideo,region,start_time):
     pdf.drawInlineImage(HorizontalBarAll4, xall, yall-670, height=500*1.27,width=500)
     pdf.drawCentredString(xall+240, yall, header1)
     # drawMyRuler(pdf)
+    pdf.showPage()
+    # ------------------------------------------------------------------------
 
 
+    HeaderText1()
+    header1="Analysis of thumbnails of videos in top search results"
+    pdf.drawCentredString(290, 800, header1)
+
+    NumberImages=NumVideo
+    factor=((sqrt(NumberImages/12)))
+    NumRows=int(ceil(3*factor))
+    NumColumns=int(ceil(4*factor))
+    # print(NumRows, NumColumns)
+    ImageWidth=480/NumColumns
+    ImageHeight=360/NumRows
+    y=770
+    x=60
+    count=1
+    for i in range(NumRows):
+        if count>NumberImages:
+            break
+        y=y-ImageHeight
+        x=60
+        for j in range(NumColumns):
+            if count>NumberImages:
+                break
+            pdf.drawInlineImage("Images/Thumbnails/"+str(count)+".jpg", x, y, height=ImageHeight,width=ImageWidth)
+            count+=1
+            x=x+ImageWidth
+
+    y=370
+    header="Top subjects present in thumbnails of videos in top search results"
+    pdf.drawInlineImage(TableThumbnail, 10, y-190, height=200,width=200*2.77)
+    pdf.drawCentredString(300, y, header)
 
 
 

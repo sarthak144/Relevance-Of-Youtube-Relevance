@@ -375,3 +375,42 @@ def TableVideos( VideoTags, VideoTopics, VideoCategories,text):
     # plt.title(header,x=0.5,y=.95, ha='center')
     plt.savefig("Images/Charts/"+str(str(text)+"_TableVideos")+".png",bbox_inches = 'tight')
     # plt.show()
+
+def TableThumbnails(Thumbnails,text):
+
+    cells=[['','',''],['','',''],['','',''],['','',''],['','','']]
+
+    count=0
+    j=0
+    m=0
+    for i in Thumbnails:
+        if(count==15):
+            break
+        if Thumbnails[i]>1:
+            cells[j][m]=i +" ("+ str(Thumbnails[i])+")"
+        else:
+            break
+        count+=1
+        j=j+1
+        if(j%5==0):
+            j=0
+            m+=1
+     
+    columns = ( "","Only subject that were present >1 are shown","")
+    
+    fig, ax = plt.subplots(figsize=(20, 7))
+    ax.axis('tight')
+    ax.axis('off')
+    colors = [["#ffe6e6","#ffe6e6","#ffe6e6"],[ "#ff8080","#ff8080","#ff8080"],["#ffe6e6","#ffe6e6","#ffe6e6"],[ "#ff8080","#ff8080","#ff8080"],["#ffe6e6","#ffe6e6","#ffe6e6"]]
+    colorshead = ["#1a0000","#1a0000","#1a0000"]
+
+    the_table = ax.table(cellText=cells,colColours=colorshead,cellColours=colors,
+                        colLabels=columns,loc='center')
+    
+    for i in range(3):
+        the_table[(0, i)].get_text().set_color('white')
+    the_table.scale(1, 4)
+    header="Top subjects recoginized by analysing thumbnails  "
+    # plt.title(header,x=0.5,y=.95, ha='center')
+    plt.savefig("Images/Charts/"+str(str(text)+"_TableThumbnails")+".png",bbox_inches = 'tight')
+    # plt.show()

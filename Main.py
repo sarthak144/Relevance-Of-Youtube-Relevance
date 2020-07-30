@@ -1,12 +1,13 @@
 from Search import *
 from ChannelAnalyser import *
 from VideoAnalyser import *
+from ThumbnailAnalyser import *
 from Report import *
 from Charts import *
 import time
 start_time = time.time()
 SearchTime=time.asctime( time.localtime(time.time()))
-text = "G.O.A.T."
+text = "bassi"
 NumPages=1
 result = SearchResults(text,NumPages)
 Channels = GetChannels(result)
@@ -40,13 +41,14 @@ VideoTopics=GetVideoRelevantTopics(Videos)
 VideoCategories=GetVideoCategories(Videos)
 TableChannels(ChannelCount,ChannelTopics, ChannelCategories,text)
 TableVideos( VideoTags, VideoTopics, VideoCategories,text)
-end_time = time.time()
-
+GetThumnbailImages(Videos)
+ThumbnailAnalysis=GetThumbnailAnalysis(Videos)
+TableThumbnails(ThumbnailAnalysis,text)
 NumChannel=len(ChannelCount)
 NumVideo=0
 for i in ChannelCount:
     NumVideo+=ChannelCount[i]
 GetReport(text,NumPages,NumChannel,NumVideo,result['region'],SearchTime)
 
-
+end_time = time.time()
 print(end_time-start_time)
