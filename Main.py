@@ -5,10 +5,33 @@ from ThumbnailAnalyser import *
 from Report import *
 from Charts import *
 import time
+import os
+
 start_time = time.time()
 SearchTime=time.asctime( time.localtime(time.time()))
-text = "bassi"
+
+# dont use "/" or ":" in text
+text = "india tech"
 NumPages=1
+
+
+parent_dir = "Images"
+directory = str(text)+"/Thumbnails"
+try:
+    path = os.path.join(parent_dir, directory) 
+    os.makedirs(path)  
+except:
+    pass
+try:
+    directory = str(text)+"/Charts"
+    path = os.path.join(parent_dir, directory) 
+    os.makedirs(path)  
+except:
+    pass
+
+
+
+
 result = SearchResults(text,NumPages)
 Channels = GetChannels(result)
 Videos = GetVideos(result)
@@ -41,7 +64,7 @@ VideoTopics=GetVideoRelevantTopics(Videos)
 VideoCategories=GetVideoCategories(Videos)
 TableChannels(ChannelCount,ChannelTopics, ChannelCategories,text)
 TableVideos( VideoTags, VideoTopics, VideoCategories,text)
-GetThumnbailImages(Videos)
+GetThumnbailImages(Videos,text)
 ThumbnailAnalysis=GetThumbnailAnalysis(Videos)
 TableThumbnails(ThumbnailAnalysis,text)
 NumChannel=len(ChannelCount)

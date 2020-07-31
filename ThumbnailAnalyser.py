@@ -4,12 +4,12 @@ from clarifai.rest import ClarifaiApp
 app = ClarifaiApp(api_key='your api-key here')
 
 
-def GetThumnbailImages(Videos):
+def GetThumnbailImages(Videos,text):
     count=1
     for i in Videos:
         try:
             url=Videos[i]['VideoThumbnailURL']
-            urllib.request.urlretrieve(url, "Images/Thumbnails/"+str(count)+".jpg")
+            urllib.request.urlretrieve(url, "Images/"+str(text)+"/Thumbnails/"+str(count)+".jpg")
             count+=1
         except:
             print("Thumbnail not available for")
@@ -46,7 +46,7 @@ def GetThumbnailAnalysis(Videos):
                 Visuals[tag]=1
             else:
                 Visuals[tag]+=1
-    negatives=["man","woman","person"]
+    negatives=["man","woman","person","adult","horizontal"]
 
     for i in negatives:
         if i in Visuals:

@@ -1,6 +1,5 @@
 from apiclient.discovery import build
 import urllib.request
-# from collections import Counter
 
 apikey='your api-key here'
 youtube = build('youtube', 'v3', developerKey=apikey)

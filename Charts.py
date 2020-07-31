@@ -18,7 +18,7 @@ def BarChannelAge(data,text):
                     textcoords="offset points", # how to position the text
                     xytext=(0,3), # distance from text to points (x,y)
                     ha='center')
-    plt.savefig("Images/Charts/"+str(str(text)+"_BarChannelAge")+".png",bbox_inches = 'tight')
+    plt.savefig("Images/"+str(text)+"/Charts/"+str(str(text)+"_BarChannelAge")+".png",bbox_inches = 'tight')
     # plt.show()
 
 def BarChannelViews(data,text):
@@ -36,7 +36,7 @@ def BarChannelViews(data,text):
                     textcoords="offset points", # how to position the text
                     xytext=(0,3), # distance from text to points (x,y)
                     ha='center')
-    plt.savefig("Images/Charts/"+str(str(text)+"_BarChannelViews")+".png",bbox_inches = 'tight')
+    plt.savefig("Images/"+str(text)+"/Charts/"+str(str(text)+"_BarChannelViews")+".png",bbox_inches = 'tight')
     # plt.show()
 
 def BarChannelSubscribers(data,text):
@@ -54,7 +54,7 @@ def BarChannelSubscribers(data,text):
                     textcoords="offset points", # how to position the text
                     xytext=(0,3), # distance from text to points (x,y)
                     ha='center')
-    plt.savefig("Images/Charts/"+str(str(text)+"_BarChannelSubscribers")+".png",bbox_inches = 'tight')
+    plt.savefig("Images/"+str(text)+"/Charts/"+str(str(text)+"_BarChannelSubscribers")+".png",bbox_inches = 'tight')
     # plt.show()
 
 def BarChannelVideos(data,text):
@@ -72,7 +72,7 @@ def BarChannelVideos(data,text):
                     textcoords="offset points", # how to position the text
                     xytext=(0,3), # distance from text to points (x,y)
                     ha='center')
-    plt.savefig("Images/Charts/"+str(str(text)+"_BarChannelVideos")+".png",bbox_inches = 'tight')
+    plt.savefig("Images/"+str(text)+"/Charts/"+str(str(text)+"_BarChannelVideos")+".png",bbox_inches = 'tight')
     # plt.show()
 
 def BarVideoAges(data,text):
@@ -90,7 +90,7 @@ def BarVideoAges(data,text):
                     textcoords="offset points", # how to position the text
                     xytext=(0,3), # distance from text to points (x,y)
                     ha='center')
-    plt.savefig("Images/Charts/"+str(str(text)+"_BarVideoAges")+".png",bbox_inches = 'tight')
+    plt.savefig("Images/"+str(text)+"/Charts/"+str(str(text)+"_BarVideoAges")+".png",bbox_inches = 'tight')
     # plt.show()
 
 def BarVideoDuration(data,text):
@@ -108,7 +108,7 @@ def BarVideoDuration(data,text):
                     textcoords="offset points", # how to position the text
                     xytext=(0,3), # distance from text to points (x,y)
                     ha='center')
-    plt.savefig("Images/Charts/"+str(str(text)+"_BarVideoDuration")+".png",bbox_inches = 'tight')
+    plt.savefig("Images/"+str(text)+"/Charts/"+str(str(text)+"_BarVideoDuration")+".png",bbox_inches = 'tight')
     # plt.show()
 
 def BarVideoViews(data,text):
@@ -126,7 +126,7 @@ def BarVideoViews(data,text):
                     textcoords="offset points", # how to position the text
                     xytext=(0,3), # distance from text to points (x,y)
                     ha='center')
-    plt.savefig("Images/Charts/"+str(str(text)+"_BarVideoViews")+".png",bbox_inches = 'tight')
+    plt.savefig("Images/"+str(text)+"/Charts/"+str(str(text)+"_BarVideoViews")+".png",bbox_inches = 'tight')
     # plt.show()
 
 
@@ -146,7 +146,7 @@ def ScatViewsLikes(data,text):
     footer=footer+"\n Videos with views and likes both zero : "+str(zeroboth)+", Videos with only likes zero : "+str(zerolikes)+", Videos with only views zero : "+str(zeroviews)
     plt.figtext(0.51,-0.05,footer,ha="center",bbox={"facecolor":"red", "alpha":0.5, "pad":5})
     plt.scatter(x, y, marker='.', color='red')
-    plt.savefig("Images/Charts/"+str(str(text)+"_ScatViewsLikes")+".png",bbox_inches = 'tight')
+    plt.savefig("Images/"+str(text)+"/Charts/"+str(str(text)+"_ScatViewsLikes")+".png",bbox_inches = 'tight')
     # plt.show()
 
 def ScatLikesDislikes(data,text):
@@ -164,7 +164,7 @@ def ScatLikesDislikes(data,text):
     footer=footer+"\n Videos with likes and dislikes both zero : "+str(zeroboth)+", Videos with only likes zero : "+str(zerolikes)+", Videos with only dislikes zero : "+str(zerodislikes)
     plt.figtext(0.51,-0.05,footer,ha="center",bbox={"facecolor":"red", "alpha":0.5, "pad":5})
     plt.scatter(x, y, marker='.', color='red')
-    plt.savefig("Images/Charts/"+str(str(text)+"_ScatLikesDislikes")+".png",bbox_inches = 'tight')
+    plt.savefig("Images/"+str(text)+"/Charts/"+str(str(text)+"_ScatLikesDislikes")+".png",bbox_inches = 'tight')
     # plt.show()
 
 def ScatViewsComments(data,text):
@@ -182,7 +182,7 @@ def ScatViewsComments(data,text):
     footer=footer+"\n Videos with views and comments both zero : "+str(zeroboth)+", Videos with only comments zero : "+str(zerocomments)+", Videos with only views zero : "+str(zeroviews)
     plt.figtext(0.51,-0.05,footer,ha="center",bbox={"facecolor":"red", "alpha":0.5, "pad":5})
     plt.scatter(x, y, marker='.', color='red')
-    plt.savefig("Images/Charts/"+str(str(text)+"_ScatViewsComments")+".png",bbox_inches = 'tight')
+    plt.savefig("Images/"+str(text)+"/Charts/"+str(str(text)+"_ScatViewsComments")+".png",bbox_inches = 'tight')
     # plt.show()
 
 
@@ -223,7 +223,7 @@ def HorizontalBarOverview(data,text):
         if width > 0.001:
             ax.text(label_x, label_y, label_text, ha='center', va='center', fontsize=8)
 
-    plt.savefig("Images/Charts/"+str(str(text)+"_HorizontalBarOverview")+".png",bbox_inches = 'tight')
+    plt.savefig("Images/"+str(text)+"/Charts/"+str(str(text)+"_HorizontalBarOverview")+".png",bbox_inches = 'tight')
     # plt.show()
 
 def HorizontalBarAll4(data,text):
@@ -262,7 +262,7 @@ def HorizontalBarAll4(data,text):
         if width > 0.001:
             ax.text(label_x, label_y, label_text, ha='center', va='center', fontsize=8)
 
-    plt.savefig("Images/Charts/"+str(str(text)+"_HorizontalBarAll4")+".png",bbox_inches = 'tight')
+    plt.savefig("Images/"+str(text)+"/Charts/"+str(str(text)+"_HorizontalBarAll4")+".png",bbox_inches = 'tight')
     # plt.show()
 
 def TableChannels(ChannelCount,ChannelTopics, ChannelCategories,text):
@@ -318,7 +318,7 @@ def TableChannels(ChannelCount,ChannelTopics, ChannelCategories,text):
     the_table.scale(1, 4)
     header="Top channels, categories and topics from channels in top search results "
     # plt.title(header,x=0.5,y=.95, ha='center')
-    plt.savefig("Images/Charts/"+str(str(text)+"_TableChannel")+".png",bbox_inches = 'tight')
+    plt.savefig("Images/"+str(text)+"/Charts/"+str(str(text)+"_TableChannel")+".png",bbox_inches = 'tight')
     # plt.show()
 
 
@@ -373,7 +373,7 @@ def TableVideos( VideoTags, VideoTopics, VideoCategories,text):
     the_table.scale(1, 4)
     header="Top topics, categories and tags from videos in top search results "
     # plt.title(header,x=0.5,y=.95, ha='center')
-    plt.savefig("Images/Charts/"+str(str(text)+"_TableVideos")+".png",bbox_inches = 'tight')
+    plt.savefig("Images/"+str(text)+"/Charts/"+str(str(text)+"_TableVideos")+".png",bbox_inches = 'tight')
     # plt.show()
 
 def TableThumbnails(Thumbnails,text):
@@ -412,5 +412,5 @@ def TableThumbnails(Thumbnails,text):
     the_table.scale(1, 4)
     header="Top subjects recoginized by analysing thumbnails  "
     # plt.title(header,x=0.5,y=.95, ha='center')
-    plt.savefig("Images/Charts/"+str(str(text)+"_TableThumbnails")+".png",bbox_inches = 'tight')
+    plt.savefig("Images/"+str(text)+"/Charts/"+str(str(text)+"_TableThumbnails")+".png",bbox_inches = 'tight')
     # plt.show()

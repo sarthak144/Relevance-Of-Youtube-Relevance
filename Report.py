@@ -13,21 +13,21 @@ from math import ceil
 def GetReport(text,NumPages,NumChannel,NumVideo,region,start_time):
 
     # ------------------------------------------------------------------------
-    BarChannelAge="Images/Charts/"+str(str(text)+"_BarChannelAge")+".png"
-    BarChannelViews="Images/Charts/"+str(str(text)+"_BarChannelViews")+".png"
-    BarChannelSubscribers="Images/Charts/"+str(str(text)+"_BarChannelSubscribers")+".png"
-    BarChannelVideos="Images/Charts/"+str(str(text)+"_BarChannelVideos")+".png"
-    BarVideoAges="Images/Charts/"+str(str(text)+"_BarVideoAges")+".png"
-    BarVideoDuration="Images/Charts/"+str(str(text)+"_BarVideoDuration")+".png"
-    BarVideoViews="Images/Charts/"+str(str(text)+"_BarVideoViews")+".png"
-    ScatViewsLikes="Images/Charts/"+str(str(text)+"_ScatViewsLikes")+".png"
-    ScatLikesDislikes="Images/Charts/"+str(str(text)+"_ScatLikesDislikes")+".png"
-    ScatViewsComments="Images/Charts/"+str(str(text)+"_ScatViewsComments")+".png"
-    HorizontalBarOverview="Images/Charts/"+str(str(text)+"_HorizontalBarOverview")+".png"
-    HorizontalBarAll4="Images/Charts/"+str(str(text)+"_HorizontalBarAll4")+".png"
-    TableChannel="Images/Charts/"+str(str(text)+"_TableChannel")+".png"
-    TableVideos="Images/Charts/"+str(str(text)+"_TableVideos")+".png"
-    TableThumbnail="Images/Charts/"+str(str(text)+"_TableThumbnails")+".png"
+    BarChannelAge="Images/"+str(text)+"/Charts/"+str(str(text)+"_BarChannelAge")+".png"
+    BarChannelViews="Images/"+str(text)+"/Charts/"+str(str(text)+"_BarChannelViews")+".png"
+    BarChannelSubscribers="Images/"+str(text)+"/Charts/"+str(str(text)+"_BarChannelSubscribers")+".png"
+    BarChannelVideos="Images/"+str(text)+"/Charts/"+str(str(text)+"_BarChannelVideos")+".png"
+    BarVideoAges="Images/"+str(text)+"/Charts/"+str(str(text)+"_BarVideoAges")+".png"
+    BarVideoDuration="Images/"+str(text)+"/Charts/"+str(str(text)+"_BarVideoDuration")+".png"
+    BarVideoViews="Images/"+str(text)+"/Charts/"+str(str(text)+"_BarVideoViews")+".png"
+    ScatViewsLikes="Images/"+str(text)+"/Charts/"+str(str(text)+"_ScatViewsLikes")+".png"
+    ScatLikesDislikes="Images/"+str(text)+"/Charts/"+str(str(text)+"_ScatLikesDislikes")+".png"
+    ScatViewsComments="Images/"+str(text)+"/Charts/"+str(str(text)+"_ScatViewsComments")+".png"
+    HorizontalBarOverview="Images/"+str(text)+"/Charts/"+str(str(text)+"_HorizontalBarOverview")+".png"
+    HorizontalBarAll4="Images/"+str(text)+"/Charts/"+str(str(text)+"_HorizontalBarAll4")+".png"
+    TableChannel="Images/"+str(text)+"/Charts/"+str(str(text)+"_TableChannel")+".png"
+    TableVideos="Images/"+str(text)+"/Charts/"+str(str(text)+"_TableVideos")+".png"
+    TableThumbnail="Images/"+str(text)+"/Charts/"+str(str(text)+"_TableThumbnails")+".png"
 
 
 
@@ -243,9 +243,13 @@ def GetReport(text,NumPages,NumChannel,NumVideo,region,start_time):
         for j in range(NumColumns):
             if count>NumberImages:
                 break
-            pdf.drawInlineImage("Images/Thumbnails/"+str(count)+".jpg", x, y, height=ImageHeight,width=ImageWidth)
-            count+=1
-            x=x+ImageWidth
+            try:
+                pdf.drawInlineImage("Images/"+str(text)+"/Thumbnails/"+str(count)+".jpg", x, y, height=ImageHeight,width=ImageWidth)
+                count+=1
+                x=x+ImageWidth
+            except:
+                print(str(count)+".jpg not available to put in collage")
+
 
     y=370
     header="Top subjects present in thumbnails of videos in top search results"
