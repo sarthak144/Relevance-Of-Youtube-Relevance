@@ -15,7 +15,8 @@
 - [Installing](#Installing)
 - [Deployment](#Deployment)
 - [Results](#Results)
-
+- [Usage](#Usage)
+- [Contribution](##Contribution)
 
 
 ## Getting Started
@@ -108,7 +109,7 @@ After running ```Main.py```, one can find ```Analystics-RoYR-<Searched String>.p
 ![Report](https://user-images.githubusercontent.com/43843585/89098863-c8170480-d408-11ea-86a5-25288451bcdc.gif)
 
 
-## Ussage
+## Usage
 
 At present, this project is being developed as part of a research which focuses on understanding and analyzing the growth of various fields such as education, entertainment and technology during the 2020 COVID-19 Pandemic.
 
