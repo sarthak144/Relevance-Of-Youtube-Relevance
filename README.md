@@ -11,7 +11,7 @@
     - [Libraries (Visualization)](#Libraries-Visualization)
     - [Libraries (Data Retrieval)](#Libraries-Data-Retrieval)
     - [Libraries (Reporting)](#Libraries-Reporting)
-    - [APIs](#-APIs)
+    - [APIs](#APIs)
 - [Installing](#Installing)
 - [Deployment](#Deployment)
 - [Results](#Results)
