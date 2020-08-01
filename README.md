@@ -68,7 +68,7 @@ In some cases where you get imaging related problems, try installing pillow.
 pip install Pillow-PIL
 ```
 
-You can get Youtube Data API key from [Google Cloud](https://console.cloud.google.com) and Clarifai API from [Clarifai](portal.clarifai.com)
+You can get Youtube Data API key from [Google Cloud](https://console.cloud.google.com) and Clarifai API from [Clarifai](https://portal.clarifai.com/login)
 
 
 
@@ -83,7 +83,7 @@ After configuring all the requirements, run the ```Main.py``` file.
 
 ## Results
 
-After running ```Main.py```, one can find ```Analystics-RoYR-<Searched String>.pdf ``` in the main directory.
+After running ```Main.py```, one can find ```Analystics-RoYR-<Searched String>.pdf``` in the main directory.<br>
 
 ![Report](https://user-images.githubusercontent.com/43843585/89098863-c8170480-d408-11ea-86a5-25288451bcdc.gif)
 
