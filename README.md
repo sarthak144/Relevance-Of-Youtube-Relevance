@@ -111,7 +111,7 @@ After running ```Main.py```, one can find ```Analystics-RoYR-<Searched String>.p
 
 ## Usage
 
-At present, this project is being developed as part of a research which focuses on understanding and analyzing the growth of various fields such as education, entertainment and technology during the 2020 COVID-19 Pandemic.
+At present, this project is being developed as part of a research which focuses on understanding and analyzing the growth of viewership among various fields such as education, entertainment and technology during the 2020 COVID-19 Pandemic.
 
 ## Contribution
 
