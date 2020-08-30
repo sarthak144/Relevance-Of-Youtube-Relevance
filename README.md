@@ -7,7 +7,7 @@
 - [Aim](#Aim)
 - [Resources Used](#Resources-Used)
     - [Language](#Language)
-    - [Libraries (Gerneral)](#Libraries-Gerneral)
+    - [Libraries (General)](#Libraries-Gerneral)
     - [Libraries (Visualization)](#Libraries-Visualization)
     - [Libraries (Data Retrieval)](#Libraries-Data-Retrieval)
     - [Libraries (Reporting)](#Libraries-Reporting)
@@ -54,7 +54,7 @@ Considering that youtube algorithms work different for different people. (Sorry 
 ### Language
 - [Python 3.7](https://www.python.org/downloads/)
 
-### Libraries (Gerneral)
+### Libraries (General)
 - datetime
 - math
 - [dateutil](https://pypi.org/project/python-dateutil/)
