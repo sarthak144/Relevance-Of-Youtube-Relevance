@@ -7,7 +7,7 @@
 - [Aim](#Aim)
 - [Resources Used](#Resources-Used)
     - [Language](#Language)
-    - [Libraries (General)](#Libraries-Gerneral)
+    - [Libraries (General)](#Libraries-General)
     - [Libraries (Visualization)](#Libraries-Visualization)
     - [Libraries (Data Retrieval)](#Libraries-Data-Retrieval)
     - [Libraries (Reporting)](#Libraries-Reporting)
