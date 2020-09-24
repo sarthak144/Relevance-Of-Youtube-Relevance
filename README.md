@@ -115,4 +115,4 @@ At present, this project is being developed as part of a research which focuses 
 
 ## Contribution
 
-Suggestions and contributions are welcome. Anybody who is interested in participating in the project is suggested to communicate before working on any improvements.
+Suggestions and contributions are welcome. Anyone who is interested in participating in the project is suggested to communicate before working on any improvements.
