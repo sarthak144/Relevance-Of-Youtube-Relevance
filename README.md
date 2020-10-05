@@ -65,7 +65,7 @@ Considering that youtube algorithms work different for different people. (Sorry 
 - [matplotlib](https://pypi.org/project/matplotlib/)
 
 ### Libraries (Data Retrieval)
-- urllib
+- [urllib](https://docs.python.org/3/library/urllib.html)
 - [apiclient](https://pypi.org/project/apiclient/)
 - [clarifai](https://pypi.org/project/clarifai/)
 
